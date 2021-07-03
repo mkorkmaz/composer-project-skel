@@ -1,0 +1,66 @@
+{
+    "name": "mkorkmaz/composer-project-skel",
+    "type": "metapackage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mehmet Korkmaz",
+            "email": "mehmet@mkorkmaz.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "monolog/monolog": "^2.2.0",
+        "psr/log": "^1.1.4",
+        "webmozart/assert": "^1.10.0",
+        "azjezz/psl": "^1.7.2"
+    },
+    "require-dev": {
+        "vimeo/psalm": "^4.8.1",
+        "damianopetrungaro/php-commitizen": "^0.2.0",
+        "malukenho/mcbumpface": "^1.1.5",
+        "doctrine/coding-standard": "^9.0.0",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.6.0",
+        "rskuipers/php-assumptions": "^0.8.0",
+        "phpunit/phpunit": "^9.5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\MyLibrary\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "\\Test\\": "./test"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "composer dumpautoload -o"
+        ],
+        "post-install-cmd": [
+            "composer dumpautoload -o"
+        ],
+        "post-update-cmd": [
+            "composer dumpautoload -o"
+        ],
+        "commit": "vendor/bin/php-commitizen commit commitizen.php",
+        "commit-all": [
+            "git add -u",
+            "@commit"
+        ],
+        "cs-check": "vendor/bin/phpcs",
+        "cs-fix": "vendor/bin/phpcbf",
+        "psalm": "vendor/bin/psalm",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+
+        "check": [
+            "@cs-check",
+            "@check-assumptions",
+            "@psalm",
+            "@test"
+        ]
+    }
+}

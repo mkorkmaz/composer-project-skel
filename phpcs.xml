@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<ruleset name="Composer Project Skeleton coding standard">
+    <description>Composer Project Skeleton coding standard</description>
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg value="p"/>
+    <arg name="colors"/>
+
+    <file>./src</file>
+    <file>./test</file>
+
+    <!-- inherit rules from: -->
+    <rule ref="Doctrine">
+        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
+    </rule>
+    <rule ref="PSR2">
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+
+    <!-- Paths to check -->
+    <file>src</file>
+</ruleset>

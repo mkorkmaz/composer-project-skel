@@ -1,0 +1,19 @@
+language: php
+sudo: false
+services:
+  - docker
+php:
+  - 8.0
+before_install:
+  - pwd
+before_script:
+  - composer install -n
+script:
+  - export XDEBUG_MODE=coverage
+  - composer run test-coverage
+  - composer run check
+after_script:
+  - if [ $TRAVIS_PHP_VERSION = '8.0' ]; then php vendor/bin/php-coveralls; fi
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
+  - vendor/bin/test-reporter
